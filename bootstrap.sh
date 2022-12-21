@@ -28,7 +28,7 @@ function install_external_apt_packages()
 function copy_config_folder
 {
     echo "Copying configs folder..."
-    cp -r .config ~/.config
+    cp -r .config ~/
 }
 
 # Copy Hyper config
@@ -38,6 +38,7 @@ function copy_hyper_config
     cp .hyper.js ~/
 }
 
-#install_apt_packages
-#install_external_apt_packages
-#copy_config_folder
+# install_apt_packages
+# install_external_apt_packages
+copy_config_folder
+copy_hyper_config

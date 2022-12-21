@@ -6,3 +6,8 @@ i3blocks
 rofi
 dunst
 fonts-font-awesome
+fonts-firacode
+python3
+python3-pip
+scrot
+imagemagick
