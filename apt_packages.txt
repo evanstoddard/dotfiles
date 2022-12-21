@@ -1,0 +1,8 @@
+i3
+git
+curl
+feh
+i3blocks
+rofi
+dunst
+fonts-font-awesome
