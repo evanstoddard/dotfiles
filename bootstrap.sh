@@ -17,6 +17,9 @@ function install_external_apt_packages()
 {
     echo "Installing external apt packages..."
 
+    # Clear out previous downloads
+    rm -rf /tmp/ext_apt_packages
+
     # Download packages
     wget --content-disposition -i external_apt_packages.txt -P /tmp/ext_apt_packages
 
@@ -38,7 +41,22 @@ function copy_hyper_config
     cp .hyper.js ~/
 }
 
-# install_apt_packages
-# install_external_apt_packages
+# Copy bash aliases
+function copy_bash_aliases
+{
+    echo "Copy bash aliases"
+    cp .bash_aliases ~/
+}
+
+function i3chmod
+{
+    echo "Setting i3 permissions"
+
+    chmod +x ~/.config/i3/scripts/*
+}
+
+install_apt_packages
+install_external_apt_packages
 copy_config_folder
 copy_hyper_config
+copy_bash_aliases
