@@ -16,3 +16,4 @@ libncurses-dev
 libgdbm-dev
 flex
 bison
+build-essential
