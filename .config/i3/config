@@ -161,12 +161,10 @@ bindsym $mod+r mode "resize"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec hyper
+bindsym $mod+Return exec kitty
 bindsym $mod+Shift+v exec code
 bindsym $mod+Shift+f exec nautilus
 bindsym $mod+Shift+c exec google-chrome
-
-
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -303,7 +301,7 @@ set $ws10 "10"
 #workspace $ws5 output HDMI-0
 
 # bind program to workspace and focus to them on startup:
-assign [class="Hyper"] $ws1
+assign [class="kitty"] $ws1
 assign [class="Google-chrome"] $ws3
 assign [class="Code"] $ws2
 
@@ -364,7 +362,7 @@ exec --no-startup-id dex --autostart --environment i3
 #exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
 
 # start terminal
-exec --no-startup-id hyper
+exec --no-startup-id kitty
 
 # start conky:
 #exec_always --no-startup-id conky
@@ -403,7 +401,6 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 #exec_always --no-startup-id autotiling
 
 # Autostart apps as you like
-exec -no-startup-id hyper
 #exec --no-startup-id sleep 2 && xfce4-terminal
 #exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
 #exec --no-startup-id sleep 3 && thunar
