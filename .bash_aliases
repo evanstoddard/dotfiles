@@ -3,3 +3,7 @@ alias gcdef="git config user.name \"Evan Stoddard\" && git config user.email \"e
 
 # i3
 alias i3config="vim ~/.config/i3/config"
+
+# vim
+alias vim="nvim"
+alias vi="nvim"

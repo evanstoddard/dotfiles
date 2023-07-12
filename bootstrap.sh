@@ -55,8 +55,23 @@ function i3chmod
     chmod +x ~/.config/i3/scripts/*
 }
 
+function install_nvim
+{
+    git clone https://github.com/neovim/neovim.git /tmp/nvim
+    cd /tmp/nvim
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
+    sudo make install
+}
+
+function install_nvchad
+{
+    git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+}
+
 install_apt_packages
 install_external_apt_packages
 copy_config_folder
 copy_hyper_config
 copy_bash_aliases
+install_nvim
+install_nvchad
