@@ -68,6 +68,12 @@ function install_nvchad
     git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 }
 
+function install_starship
+{
+    curl -sS https://starship.rs/install.sh | sh
+    echo 'eval "$(starship init bash)"' >> ~/.bashrc
+}
+
 install_apt_packages
 install_external_apt_packages
 copy_config_folder
@@ -75,3 +81,4 @@ copy_hyper_config
 copy_bash_aliases
 install_nvim
 install_nvchad
+install_starship

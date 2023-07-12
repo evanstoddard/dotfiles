@@ -22,3 +22,4 @@ gettext
 cmake 
 unzip
 ripgrep
+kitty
