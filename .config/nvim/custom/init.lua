@@ -1,0 +1,1 @@
+vim.g.vscode_snippets_path = "~/dotfiles/snippets"

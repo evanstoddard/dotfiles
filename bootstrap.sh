@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+
 # Install apt packages
 function install_apt_packages()
 {
@@ -27,25 +30,39 @@ function install_external_apt_packages()
     sudo apt install -y /tmp/ext_apt_packages/*
 }
 
-# Copy config folder
-function copy_config_folder
+# Link i3 config
+function link_i3_config
 {
-    echo "Copying configs folder..."
-    cp -r .config ~/
+    rm -rf ~/.config/i3 &> /dev/null
+    rm -rf ~/.config/dunst &> /dev/null
+    rm -rf ~/.config/rofi &> /dev/null
+
+    ln -sf ${SCRIPT_DIR}/.config/i3 ~/.config/i3
+    ln -sf ${SCRIPT_DIR}/.config/dunst ~/.config/dunst
+    ln -sf ${SCRIPT_DIR}/.config/rofi ~/.config/rofi
 }
 
-# Copy Hyper config
-function copy_hyper_config
+# Link kitty config
+function link_kitty_config
 {
-    echo "Copying hyper config..."
-    cp .hyper.js ~/
+    rm -rf ~/.config/kitty &> /dev/null
+    
+    ln -sf ${SCRIPT_DIR}/.config/kitty ~/.config/kitty
 }
 
-# Copy bash aliases
-function copy_bash_aliases
+# Link nvim config
+function link_nvim_config
 {
-    echo "Copy bash aliases"
-    cp .bash_aliases ~/
+    rm -rf ~/.config/nvim/lua/custom
+
+    ln -sf ${SCRIPT_DIR}/.config/nvim/custom ~/.config/nvim/lua/custom
+}
+
+# Link bash aliases
+function link_bash_aliases
+{
+    rm ~/.bash_aliases
+    ln -sf ${SCRIPT_DIR}/.bash_aliases ~/.bash_aliases
 }
 
 function i3chmod
@@ -76,9 +93,10 @@ function install_starship
 
 install_apt_packages
 install_external_apt_packages
-copy_config_folder
-copy_hyper_config
-copy_bash_aliases
 install_nvim
 install_nvchad
 install_starship
+link_i3_config
+link_kitty_config
+link_nvim_config
+link_bash_aliases
