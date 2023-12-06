@@ -131,6 +131,12 @@ bindcode $mod+Shift+80 	 move container to workspace  $ws8
 bindcode $mod+Shift+81 	 move container to workspace  $ws9
 bindcode $mod+Shift+90 	 move container to workspace  $ws10
 
+bindsym $mod+Ctrl+Right move workspace to output right
+bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Up move workspace to output up
+bindsym $mod+Ctrl+Down move workspace to output down
+
+
 # resize window (you can also use the mouse for that):
 mode "resize" {
 # These bindings trigger as soon as you enter the resize mode
@@ -304,6 +310,7 @@ set $ws10 "10"
 assign [class="kitty"] $ws1
 assign [class="Google-chrome"] $ws3
 assign [class="Code"] $ws2
+assign [class="Slack"] $ws10
 
 # automatic set focus new window if it opens on another workspace than the current:
 for_window [class=Hyper] focus
@@ -404,7 +411,7 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 #exec --no-startup-id sleep 2 && xfce4-terminal
 #exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
 #exec --no-startup-id sleep 3 && thunar
-
+exec --no-startup-id sleep 2 && slack
 ###############
 # system tray #
 ###############
@@ -437,6 +444,8 @@ for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [window_role="About"] floating enable
+for_window [class="gnome-calulator"] floating enable
+for_window [class="Gnome-calculator"] floating enable
 
 # set border of floating window
 for_window [class="urxvt"] border pixel 1'
@@ -526,8 +535,7 @@ strip_workspace_numbers yes
 # any workspace that has a name of the form
 # “[n][:][NAME]” will display only the name.
 #strip_workspace_numbers yes
-##strip_workspace_name no
-#
+##strip_workspace_name name
 #	colors {
 #		separator          $purple
 #		background         $darkbluetrans
