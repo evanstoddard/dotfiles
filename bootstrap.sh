@@ -7,12 +7,16 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 function install_apt_packages()
 {
     echo "Installing apt packages..."
-
+    
+    sudo apt update
+    sudo apt install nala -y
+    sudo nala update
+    
     # Load packages into array
     APT_PACKAGES=$(<apt_packages.txt)
 
     # Install packages
-    sudo apt install -y ${APT_PACKAGES}
+    sudo nala install -y ${APT_PACKAGES}
 }
 
 # Install apt packages downloaded
@@ -27,7 +31,7 @@ function install_external_apt_packages()
     wget --content-disposition -i external_apt_packages.txt -P /tmp/ext_apt_packages
 
     # Install packages
-    sudo apt install -y /tmp/ext_apt_packages/*
+    sudo nala install -y /tmp/ext_apt_packages/*
 }
 
 # Link i3 config
@@ -91,6 +95,12 @@ function install_starship
     echo 'eval "$(starship init bash)"' >> ~/.bashrc
 }
 
+function add_user_to_groups
+{
+    sudo usermod -a -G video $(whoami)
+    sudo usermod -a -G dialout $(whoami)
+}
+
 install_apt_packages
 install_external_apt_packages
 install_nvim
@@ -100,3 +110,4 @@ link_i3_config
 link_kitty_config
 link_nvim_config
 link_bash_aliases
+add_user_to_groups
