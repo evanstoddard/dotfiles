@@ -8,12 +8,10 @@
             {
                 "language": "c",
                 "path": "./snippets/c/c.json"
-            }
-        ],  [
-            {
+            },{
                 "language": "cpp",
                 "path": "./snippets/c/c.json"
             }
-        ]
+        ] 
     }
 }

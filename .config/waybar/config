@@ -1,26 +1,22 @@
 {
     "layer": "top",
+    "margin-top": 5,
+    "margin-left": 5,
+    "margin-right": 5,
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
-    "modules-center": [
-        "clock", 
-        "custom/weather"
-    ],
     "modules-right": [
-        "wlr/taskbar",
-        "custom/separator", 
-        "pulseaudio", 
-        "custom/separator", 
         "memory", 
-        "custom/separator", 
         "cpu", 
-        "custom/separator", 
-        "battery"],
+        "battery",
+        "pulseaudio",  
+        "custom/separator",
+        "custom/weather",
+        "clock"],
     "sway/window": {
         "max-length": 50
     },
     "clock": {
         "format": "{:%a, %d. %b  %H:%M}",
-        "tooltip": false,
     },
     "wlr/taskbar": {
         "format": "{icon}",
@@ -32,17 +28,17 @@
     },
     "memory": {
         "interval": 30,
-        "format": "{used:0.1f}G/{total:0.1f}G "
+        "format": " {used:0.1f}G"
     },
     "cpu": {
         "interval": 10,
-        "format": "{}% ",
-        "max-length": 10
+        "format": "   {}% ",
+        "max-length": 205
     },
     "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
+        "format": "{icon}   {volume}%",
+        "format-bluetooth": "{icon}",
+        "format-muted": "",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -50,14 +46,14 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", ""]
+            "default": ["", "", ""]
         },
         "scroll-step": 1,
         "on-click": "pavucontrol"
     },
     "custom/weather": {
         "tooltip": false,
-        "exec": "curl 'https://wttr.in/Nashvile?u&format=3'",
+        "exec": "curl 'https://wttr.in/Nashvile?format=3&u&view=1'",
         "interval": 800
     },
     "battery": {
@@ -65,12 +61,12 @@
             		"warning": 30,
             		"critical": 15
         	},
-        	"format": "{icon} {capacity}%",
-        	"format-charging": "  {capacity}%",
-        	"format-plugged": "  {capacity}%",
-        	"format-alt": "{time} {icon}",
-        	"format-full": "  {capacity}%",
-        	"format-icons": ["    ", "    ", "    "]
+        	"format": "{icon}{capacity}%",
+        	"format-charging": "{capacity}%",
+        	"format-plugged": "{capacity}%",
+        	"format-alt": "{icon}{capacity}%",
+        	"format-full": "{capacity}%",
+        	"format-icons": ["", "", ""]
 	},
     "custom/separator": {
         "format": "|",

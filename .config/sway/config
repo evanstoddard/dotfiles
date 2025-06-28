@@ -1,9 +1,9 @@
 # Basic Settings
 set $mod Mod4
-set $term kitty
+set $term ghostty
 
 # Wallpaper
-output * background ~/.local/wallpapers/lofi_cafe.jpg fill
+output * background ~/.local/wallpapers/lofi_room.jpg fill
 
 # Visual
 gaps inner 8
@@ -13,10 +13,10 @@ font pango: Iosevka 9
 default_border pixel 2
 
 # Colors
-set $cl_high #962a54
+set $cl_high #7a2043
 set $cl_indi #962a54
 set $cl_back #231f20
-set $cl_fore #962a54
+set $cl_fore #fefefe
 set $cl_urge #ee2e24
 
 client.focused          $cl_high $cl_high $cl_fore $cl_indi $cl_high
@@ -26,9 +26,9 @@ client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
 
 # Bindings
 bindsym Print exec grim -g "$(slurp -d)" - | wl-copy
-bindsym $mod+Return exec swaymsg workspace $ws1 && $term
+bindsym $mod+Return exec swaymsg workspace $ws1 && $term -e tmux
 bindsym $mod+Shift+q kill
-bindsym $mod+Tab exec wofi --show run
+bindsym $mod+Tab exec ~/.config/rofi/launchers/type-1/launcher.sh
 bindsym $mod+Shift+r reload
 bindsym $mod+Shift+e exec wlogout -p layer-shell
 bindsym $mod+l exec hyprlock
@@ -106,7 +106,6 @@ exec swaync
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
 # Workplace Setup
-exec 'sleep 3; swaymsg workspace 1'
 
 # Application bindings
 bindsym $mod+Shift+v exec swaymsg workspace $ws2 && code
@@ -116,6 +115,6 @@ bindsym $mod+Shift+c exec swaymsg workspace $ws3 && google-chrome-stable
 assign [class="Chromium"] workspace $ws3
 assign [class="Google-chrome"] workspace $ws3
 assign [class="Code"] workspace $ws2
-assign [app_id="kitty"] workspace $ws1
+assign [app_id="com.mitchellh.ghostty"] workspace $ws1
 
 include /etc/sway/config.d/*
