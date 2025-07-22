@@ -32,6 +32,12 @@ function link_bash_aliases
 
 function install_nvim
 {
+    which nvim &> /dev/null
+
+    if [ $? == 0 ]; then
+        return
+    fi
+
     rm -rf /tmp/nvim
     git clone https://github.com/neovim/neovim.git /tmp/nvim
     cd /tmp/nvim
@@ -39,31 +45,29 @@ function install_nvim
     sudo make install
 }
 
-function install_starship
+function install_oh_my_zsh
 {
-    curl -sS https://starship.rs/install.sh | sh
-
-    touch ~/.bashrc
-
-    cat ~/.bashrc | grep -w 'starship init bash' &> /dev/null
-    if [ $? != 0 ]; then
-        echo 'eval "$(starship init bash)"' >> ~/.bashrc
-    fi;
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-function link_sway_configs
+function link_configs 
 {
-    rm -rf ~/.config/sway ~/.config/waybar ~/.config/wofi ~/.config/swaync ~/.config/wlogout ~/.config/hypr
+    rm -rf ~/.config/sway ~/.config/waybar ~/.config/wofi ~/.config/swaync ~/.config/wlogout ~/.config/hypr ~/.config/nvim
     ln -sf ${SCRIPT_DIR}/.config/sway ~/.config/sway
     ln -sf ${SCRIPT_DIR}/.config/waybar ~/.config/waybar
-    ln -sf ${SCRIPT_DIR}/.config/wofi ~/.config/wofi
+    ln -sf ${SCRIPT_DIR}/.config/rofi ~/.config/rofi
     ln -sf ${SCRIPT_DIR}/.config/swaync ~/.config/swaync
     ln -sf ${SCRIPT_DIR}/.config/wlogout ~/.config/wlogout
-    ln -sf ${SCRIPT_DIR}/.config/hypr ~/.config/hypr
 }
 
 function install_yay
 {
+    which yay &> /dev/null
+
+    if [ $? == 0 ]; then
+        return
+    fi
+
     git clone https://aur.archlinux.org/yay.git /tmp/yay
     pushd /tmp/yay
     makepkg -s -i --noconfirm 
@@ -75,9 +79,13 @@ function install_wlogout
     echo "1" | yay --noconfirm --useask wlogout
 }
 
-function install_local
+function install_wallpapers
 {
-    cp -r ${SCRIPT_DIR}/.local ~/
+    mkdir -p ~/.local
+
+    rm -rf ~/.local/wallpapers
+
+    ln -sf ${SCRIPT_DIR}/.local/wallpapers
 }
 
 link_bash_aliases
@@ -85,7 +93,7 @@ install_pacman_packages
 install_yay
 install_wlogout
 install_nvim
-install_starship
-link_sway_configs
+install_oh_my_zsh
+link_configs
 link_kitty_config
-install_local
+install_wallpapers

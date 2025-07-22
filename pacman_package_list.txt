@@ -13,4 +13,6 @@ swaybg
 swaync
 libnotify
 brightnessctl
-hyprlock
+zsh
+kanshi
+tmux
