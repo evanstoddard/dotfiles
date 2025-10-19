@@ -58,6 +58,7 @@ function link_configs
     ln -sf ${SCRIPT_DIR}/.config/rofi ~/.config/rofi
     ln -sf ${SCRIPT_DIR}/.config/swaync ~/.config/swaync
     ln -sf ${SCRIPT_DIR}/.config/wlogout ~/.config/wlogout
+    ln -sf ${SCRIPT_DIR}/.config/nvim ~/.config/nvim
 }
 
 function install_yay
@@ -85,7 +86,7 @@ function install_wallpapers
 
     rm -rf ~/.local/wallpapers
 
-    ln -sf ${SCRIPT_DIR}/.local/wallpapers
+    ln -sf ${SCRIPT_DIR}/.local/wallpapers ~/.local/wallpapers
 }
 
 link_bash_aliases
