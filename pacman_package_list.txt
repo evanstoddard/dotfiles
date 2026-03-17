@@ -7,7 +7,6 @@ wofi
 ttf-font-awesome
 ttf-iosevka-nerd
 ttf-fira-code
-kitty
 gcc
 swaybg
 swaync

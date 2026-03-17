@@ -1,3 +1,5 @@
 google-chrome
 wprop
 kanshi
+ghostty
+zen-browser-bin

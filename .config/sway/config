@@ -119,7 +119,7 @@ bindsym $mod+Shift+n exec swaync-client -t -sw
 
 # Application bindings
 bindsym $mod+Shift+v exec swaymsg workspace $ws2 && code
-bindsym $mod+Shift+c exec swaymsg workspace $ws3 && google-chrome-stable
+bindsym $mod+Shift+c exec swaymsg workspace $ws3 && zen-browser
 
 # Workspace Assignments
 assign [class="Chromium"] workspace $ws3
