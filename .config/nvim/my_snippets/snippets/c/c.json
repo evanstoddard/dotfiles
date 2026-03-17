@@ -2,7 +2,7 @@
     "New Header": {
 		"prefix": ["~~header"],
 		"body": [
-			"/*", " * Copyright (C) Ovyl",
+			"/*", " * Copyright (C) Evan Stoddard",
 			" */",
 			"",
 			"/**",
@@ -40,7 +40,7 @@
   "New Implementation File": {
 		"prefix": ["~~impl"],
 		"body": [
-			"/*", " * Copyright (C) Ovyl", 
+			"/*", " * Copyright (C) Evan Stoddard", 
 			" */",
 			"",
 			"/**",

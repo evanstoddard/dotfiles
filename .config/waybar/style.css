@@ -17,7 +17,8 @@ window#waybar {
 #disk,
 #pulseaudio,
 #battery,
-#cpu {
+#cpu,
+#tray {
   padding-left: 5px;
   padding-right:5px;
   margin:5px;

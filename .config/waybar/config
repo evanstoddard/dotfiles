@@ -5,10 +5,11 @@
     "margin-right": 5,
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-right": [
-        "memory", 
-        "cpu", 
+        "tray",
+        "memory",
+        "cpu",
         "battery",
-        "pulseaudio",  
+        "pulseaudio",
         "custom/separator",
         "custom/weather",
         "clock"],
@@ -72,6 +73,10 @@
         "format": "|",
         "interval": "once",
         "tooltip": false
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
     }
 
 }
