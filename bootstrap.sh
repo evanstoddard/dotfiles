@@ -41,8 +41,8 @@ function link_configs
 {
     for dir in ${SCRIPT_DIR}/.config/*/; do
         name=$(basename "$dir")
-        rm -rf ~/.config/${name}
-        ln -sf ${dir%/} ~/.config/${name}
+        rm -f ~/.config/${name}
+        ln -sf "${dir%/}" ~/.config/${name}
     done
 }
 
