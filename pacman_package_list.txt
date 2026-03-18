@@ -15,3 +15,8 @@ brightnessctl
 zsh
 kanshi
 tmux
+ghostty
+bluetui
+glow
+bottom
+bat

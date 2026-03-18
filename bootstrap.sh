@@ -7,34 +7,12 @@ function install_pacman_packages
     sudo pacman -S --noconfirm - < ${SCRIPT_DIR}/pacman_package_list.txt
 }
 
-# Link kitty config
-function link_kitty_config
-{
-    rm -rf ~/.config/kitty &> /dev/null
-    
-    ln -sf ${SCRIPT_DIR}/.config/kitty ~/.config/kitty
-}
-
-# Link bash aliases
-function link_bash_aliases
-{
-    rm -rf ~/.bash_aliases
-    ln -sf ${SCRIPT_DIR}/.bash_aliases ~/.bash_aliases
-
-    touch ~/.bashrc
-
-    cat ~/.bashrc | grep "source ~/.bash_aliases" &> /dev/null
-
-    if [ $? != 0 ]; then
-        echo "source ~/.bash_aliases" >> ~/.bashrc
-    fi;
-}
-
 function install_nvim
 {
     which nvim &> /dev/null
 
     if [ $? == 0 ]; then
+        echo "NeoVim already installed... skipping..."
         return
     fi
 
@@ -52,7 +30,7 @@ function install_oh_my_zsh
 
 function link_configs 
 {
-    rm -rf ~/.config/sway ~/.config/waybar ~/.config/wofi ~/.config/swaync ~/.config/wlogout ~/.config/hypr ~/.config/nvim
+    rm -rf ~/.config/sway ~/.config/waybar ~/.config/rofi ~/.config/swaync ~/.config/wlogout ~/.config/hypr ~/.config/nvim
     ln -sf ${SCRIPT_DIR}/.config/sway ~/.config/sway
     ln -sf ${SCRIPT_DIR}/.config/waybar ~/.config/waybar
     ln -sf ${SCRIPT_DIR}/.config/rofi ~/.config/rofi
@@ -75,9 +53,9 @@ function install_yay
     popd
 }
 
-function install_wlogout
+function install_yay_packages
 {
-    echo "1" | yay --noconfirm --useask wlogout
+    echo "" | yay --noconfirm --useask - < ${SCRIPT_DIR}/yay_package_list.txt
 }
 
 function install_wallpapers
@@ -89,12 +67,10 @@ function install_wallpapers
     ln -sf ${SCRIPT_DIR}/.local/wallpapers ~/.local/wallpapers
 }
 
-link_bash_aliases
 install_pacman_packages
 install_yay
-install_wlogout
+install_yay_packages
 install_nvim
 install_oh_my_zsh
 link_configs
-link_kitty_config
 install_wallpapers

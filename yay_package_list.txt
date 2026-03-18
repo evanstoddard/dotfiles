@@ -1,5 +1,10 @@
-google-chrome
 wprop
 kanshi
-ghostty
 zen-browser-bin
+ttf-phosphor-icons
+jlink
+wdisplay
+wdisplays-persistent
+hyprlock
+wmname
+ttf-phosphor-icons

@@ -54,7 +54,7 @@
     },
     "custom/weather": {
         "tooltip": false,
-        "exec": "curl 'https://wttr.in/Nashvile?format=3&u&view=1'",
+        "exec": "curl 'https://wttr.in/Nashvile?Q&format=3&u'",
         "interval": 800
     },
     "battery": {
