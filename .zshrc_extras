@@ -12,3 +12,33 @@ alias ga="git add"
 alias gc="git commit"
 alias gp="git push"
 alias gl="git log --oneline --graph --decorate"
+
+## Update packages
+alias update="yay -Syu"
+
+## Cleanup
+alias clean-pkg="sudo pacman -Sc"           # remove uninstalled package caches
+alias clean-pkg-all="sudo pacman -Scc"      # remove all package caches
+alias clean-yay="yay -Sc"                   # remove uninstalled AUR caches
+alias clean-journal="sudo journalctl --vacuum-time=2weeks"  # trim systemd logs
+alias clean-thumb="rm -rf ~/.cache/thumbnails/*"   # thumbnail cache
+alias clean-nvim="rm -rf ~/.local/share/nvim/swap/* ~/.local/share/nvim/backup/*"  # nvim swap/backup files
+
+# Convenience functions/macros
+
+## Convenience function to clean all caches/logs
+function sys_clean_all
+{
+    clean-pkg
+    clean-yay
+    clean-journal
+    clean-thumb
+    clean-nvim
+}
+
+# Environment Variables
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+# Paths
+export PATH="$HOME/.local/bin:$PATH"

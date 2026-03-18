@@ -25,8 +25,8 @@ client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
 client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
 
 # Bindings
-bindsym Print exec grim -g "$(slurp -d)" - | wl-copy
-bindsym $mod+Return exec swaymsg workspace $ws1 && $term -e tmux
+bindsym Print exec flameshot gui
+bindsym $mod+Return exec swaymsg workspace $ws1 && $term -e zellij
 bindsym $mod+Shift+q kill
 bindsym $mod+Tab exec ~/.config/rofi/launchers/type-1/launcher.sh
 bindsym $mod+Shift+r reload
@@ -122,9 +122,8 @@ bindsym $mod+Shift+v exec swaymsg workspace $ws2 && code
 bindsym $mod+Shift+c exec swaymsg workspace $ws3 && zen-browser
 
 # Workspace Assignments
-assign [class="Chromium"] workspace $ws3
-assign [class="Google-chrome"] workspace $ws3
 assign [class="Code"] workspace $ws2
 assign [app_id="com.mitchellh.ghostty"] workspace $ws1
+assign [app_id="zen"] workspace $ws3
 
 include /etc/sway/config.d/*
