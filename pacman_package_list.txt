@@ -28,3 +28,4 @@ arm-none-eabi-gdb
 arm-none-eabi-newlib
 flameshot
 zellij
+zip
