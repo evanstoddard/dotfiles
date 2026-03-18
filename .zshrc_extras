@@ -1,0 +1,14 @@
+# Aliases
+
+## Use bat instead of cat
+alias cat=bat
+
+## Quickly reload zsh config
+alias reload="source ~/.zshrc"
+
+## Common git shortcuts
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
+alias gl="git log --oneline --graph --decorate"

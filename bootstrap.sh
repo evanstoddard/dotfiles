@@ -4,7 +4,16 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 function install_pacman_packages
 {
-    sudo pacman -S --noconfirm - < ${SCRIPT_DIR}/pacman_package_list.txt
+    local packages=$(comm -23 \
+        <(sort ${SCRIPT_DIR}/pacman_package_list.txt) \
+        <(pacman -Qq | sort))
+
+    if [ -z "$packages" ]; then
+        echo "All pacman packages already installed... skipping..."
+        return
+    fi
+
+    echo "$packages" | sudo pacman -S --noconfirm -
 }
 
 function install_nvim
@@ -30,13 +39,11 @@ function install_oh_my_zsh
 
 function link_configs 
 {
-    rm -rf ~/.config/sway ~/.config/waybar ~/.config/rofi ~/.config/swaync ~/.config/wlogout ~/.config/hypr ~/.config/nvim
-    ln -sf ${SCRIPT_DIR}/.config/sway ~/.config/sway
-    ln -sf ${SCRIPT_DIR}/.config/waybar ~/.config/waybar
-    ln -sf ${SCRIPT_DIR}/.config/rofi ~/.config/rofi
-    ln -sf ${SCRIPT_DIR}/.config/swaync ~/.config/swaync
-    ln -sf ${SCRIPT_DIR}/.config/wlogout ~/.config/wlogout
-    ln -sf ${SCRIPT_DIR}/.config/nvim ~/.config/nvim
+    for dir in ${SCRIPT_DIR}/.config/*/; do
+        name=$(basename "$dir")
+        rm -rf ~/.config/${name}
+        ln -sf ${dir%/} ~/.config/${name}
+    done
 }
 
 function install_yay
@@ -55,7 +62,16 @@ function install_yay
 
 function install_yay_packages
 {
-    echo "" | yay --noconfirm --useask - < ${SCRIPT_DIR}/yay_package_list.txt
+    local packages=$(comm -23 \
+        <(sort ${SCRIPT_DIR}/yay_package_list.txt) \
+        <(yay -Qq | sort))
+
+    if [ -z "$packages" ]; then
+        echo "All yay packages already installed... skipping..."
+        return
+    fi
+
+    echo "" | yay --noconfirm --useask - <<< "$packages"
 }
 
 function install_wallpapers
@@ -67,6 +83,18 @@ function install_wallpapers
     ln -sf ${SCRIPT_DIR}/.local/wallpapers ~/.local/wallpapers
 }
 
+function setup_zsh_extras
+{
+    local extras_file="${SCRIPT_DIR}/.zshrc_extras"
+    local source_line="source ~/.zshrc_extras"
+
+    ln -sf "$extras_file" ~/.zshrc_extras
+
+    if ! grep -qF "$source_line" ~/.zshrc; then
+        echo $'\nsource ~/.zshrc_extras' >> ~/.zshrc    
+    fi
+}
+
 install_pacman_packages
 install_yay
 install_yay_packages
@@ -74,3 +102,4 @@ install_nvim
 install_oh_my_zsh
 link_configs
 install_wallpapers
+setup_zsh_extras
