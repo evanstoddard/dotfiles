@@ -8,3 +8,4 @@ wdisplays-persistent
 hyprlock
 wmname
 ttf-phosphor-icons
+waybar-git

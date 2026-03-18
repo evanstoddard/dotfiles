@@ -12,12 +12,16 @@
         "pulseaudio",
         "custom/separator",
         "custom/weather",
-        "clock"],
+        "custom/separator",
+        "power-profiles-daemon",
+        "custom/separator",
+        "clock"
+    ],
     "sway/window": {
         "max-length": 50
     },
     "clock": {
-        "format": "{:%a, %d. %b  %H:%M}",
+        "format": "{:%a, %d. %b  %H:%M}"
     },
     "wlr/taskbar": {
         "format": "{icon}",
@@ -54,7 +58,7 @@
     },
     "custom/weather": {
         "tooltip": false,
-        "exec": "curl 'https://wttr.in/Nashvile?Q&format=3&u'",
+        "exec": "~/.config/waybar/weather.sh",
         "interval": 800
     },
     "battery": {
@@ -77,6 +81,16 @@
     "tray": {
         "icon-size": 16,
         "spacing": 10
+    },
+    "power-profiles-daemon": {
+       "format": "{icon}   {profile}",
+       "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
     }
-
 }

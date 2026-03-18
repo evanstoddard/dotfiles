@@ -29,3 +29,4 @@ arm-none-eabi-newlib
 flameshot
 zellij
 zip
+power-profiles-daemon
