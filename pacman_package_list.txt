@@ -30,3 +30,4 @@ flameshot
 zellij
 zip
 power-profiles-daemon
+rofi

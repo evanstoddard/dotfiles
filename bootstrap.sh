@@ -4,6 +4,8 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 function install_pacman_packages
 {
+    sudo pacman -Sy
+
     local packages=$(comm -23 \
         <(sort ${SCRIPT_DIR}/pacman_package_list.txt) \
         <(pacman -Qq | sort))
