@@ -29,9 +29,10 @@ function install_nvim
 
     rm -rf /tmp/nvim
     git clone https://github.com/neovim/neovim.git /tmp/nvim
-    cd /tmp/nvim
+    pushd /tmp/nvim
     make -j$(nproc) CMAKE_BUILD_TYPE=RelWithDebInfo
     sudo make install
+    popd
 }
 
 function install_oh_my_zsh
