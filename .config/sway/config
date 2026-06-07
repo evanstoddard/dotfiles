@@ -126,4 +126,8 @@ assign [class="Code"] workspace $ws2
 assign [app_id="com.mitchellh.ghostty"] workspace $ws1
 assign [app_id="zen"] workspace $ws3
 
+# Auto-clicker toggle
+exec systemctl --user start ydotool
+bindsym $mod+Shift+l exec ~/.local/bin/toggle-click.sh
+
 include /etc/sway/config.d/*

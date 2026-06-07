@@ -72,7 +72,7 @@ keybinds clear-defaults=true {
         bind "j" { Resize "Increase down"; }
         bind "k" { Resize "Increase up"; }
         bind "l" { Resize "Increase right"; }
-        bind "Ctrl n" { SwitchToMode "normal"; }
+        bind "Ctrl ." { SwitchToMode "normal"; }
     }
     move {
         bind "left" { MovePane "left"; }
@@ -170,7 +170,7 @@ keybinds clear-defaults=true {
         bind "Ctrl b" { SwitchToMode "tmux"; }
     }
     shared_except "locked" "scroll" "search" {
-        bind "Ctrl s" { SwitchToMode "scroll"; }
+        bind "Ctrl /" { SwitchToMode "scroll"; }
     }
     shared_except "locked" "tab" {
         bind "Ctrl t" { SwitchToMode "tab"; }
@@ -179,7 +179,7 @@ keybinds clear-defaults=true {
         bind "Ctrl p" { SwitchToMode "pane"; }
     }
     shared_except "locked" "resize" {
-        bind "Ctrl n" { SwitchToMode "resize"; }
+        bind "Ctrl ." { SwitchToMode "resize"; }
     }
     shared_except "normal" "locked" "entersearch" {
         bind "enter" { SwitchToMode "normal"; }
@@ -205,7 +205,7 @@ keybinds clear-defaults=true {
         bind "j" { ScrollDown; }
         bind "k" { ScrollUp; }
         bind "l" { PageScrollDown; }
-        bind "Ctrl s" { SwitchToMode "normal"; }
+        bind "Ctrl /" { SwitchToMode "normal"; }
         bind "u" { HalfPageScrollUp; }
     }
     entersearch {

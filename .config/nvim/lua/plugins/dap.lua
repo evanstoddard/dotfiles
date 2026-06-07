@@ -68,12 +68,11 @@ return {
       
       -- Setup cortex-debug adapter
       require("dap-cortex-debug").setup({
-        debug = false, -- Set to true for debug output
-        -- Extension path is usually auto-detected
+        debug = false,
         extension_path = nil,
         lib_extension = nil,
-        node_path = "node", -- Path to node.js executable
-        dapui_rtt = true, -- Enable RTT output in DAP UI
+        node_path = "node",
+        dapui_rtt = true,
       })
       
       -- Auto-open/close DAP UI

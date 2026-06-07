@@ -1,0 +1,17 @@
+name: bootstrap
+
+on:
+  push:
+    branches: [ubuntu]
+  pull_request:
+    branches: [ubuntu]
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run bootstrap.sh
+        run: bash bootstrap.sh

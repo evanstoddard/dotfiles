@@ -1,7 +1,12 @@
 # Aliases
 
-## Use bat instead of cat
-alias cat=bat
+## Use bat instead of cat (Ubuntu 22.04 ships the binary as batcat)
+if command -v batcat &>/dev/null; then
+    alias cat=batcat
+    alias bat=batcat
+elif command -v bat &>/dev/null; then
+    alias cat=bat
+fi
 
 ## Quickly reload zsh config
 alias reload="source ~/.zshrc"
@@ -14,15 +19,17 @@ alias gp="git push"
 alias gl="git log --oneline --graph --decorate"
 
 ## Update packages
-alias update="yay -Syu"
+alias update="sudo apt update && sudo apt upgrade -y"
 
 ## Cleanup
-alias clean-pkg="sudo pacman -Sc"           # remove uninstalled package caches
-alias clean-pkg-all="sudo pacman -Scc"      # remove all package caches
-alias clean-yay="yay -Sc"                   # remove uninstalled AUR caches
-alias clean-journal="sudo journalctl --vacuum-time=2weeks"  # trim systemd logs
-alias clean-thumb="rm -rf ~/.cache/thumbnails/*"   # thumbnail cache
+alias clean-pkg="sudo apt-get autoremove -y && sudo apt-get autoclean"  # remove unused packages
+alias clean-pkg-all="sudo apt-get clean"                                 # clear all cached packages
+alias clean-journal="sudo journalctl --vacuum-time=2weeks"               # trim systemd logs
+alias clean-thumb="rm -rf ~/.cache/thumbnails/*"                         # thumbnail cache
 alias clean-nvim="rm -rf ~/.local/share/nvim/swap/* ~/.local/share/nvim/backup/*"  # nvim swap/backup files
+
+# STM32CubeMX
+alias stm32cubemx="export _JAVA_AWT_WM_NONREPARENTING=1 && export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dsun.java2d.xrender=true' && wmname LG3D && nohup /opt/stm32cubemx/STM32CubeMX &> /dev/null &"
 
 # Convenience functions/macros
 
@@ -30,7 +37,6 @@ alias clean-nvim="rm -rf ~/.local/share/nvim/swap/* ~/.local/share/nvim/backup/*
 function sys_clean_all
 {
     clean-pkg
-    clean-yay
     clean-journal
     clean-thumb
     clean-nvim
