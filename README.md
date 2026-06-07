@@ -1,5 +1,7 @@
 # dotfiles
 
+[![bootstrap](https://github.com/evanstoddard/dotfiles/actions/workflows/bootstrap.yml/badge.svg?branch=ubuntu)](https://github.com/evanstoddard/dotfiles/actions/workflows/bootstrap.yml)
+
 Personal dotfiles for a Sway-based Wayland desktop on **Ubuntu 24.04 LTS**. Includes configs for all core tools and a bootstrap script to get a fresh machine up and running quickly.
 
 ## Quick Start
