@@ -13,7 +13,7 @@
         "custom/separator",
         "custom/weather",
         "custom/separator",
-        "power-profiles-daemon",
+        "custom/power-profile",
         "custom/separator",
         "clock"
     ],
@@ -82,15 +82,11 @@
         "icon-size": 16,
         "spacing": 10
     },
-    "power-profiles-daemon": {
-       "format": "{icon}   {profile}",
-       "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-        "tooltip": true,
-        "format-icons": {
-            "default": "",
-            "performance": "",
-            "balanced": "",
-            "power-saver": ""
-        }
+    "custom/power-profile": {
+        "exec": "~/.config/waybar/power-profile.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "~/.config/waybar/power-profile.sh cycle",
+        "tooltip": true
     }
 }
