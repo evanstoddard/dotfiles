@@ -192,13 +192,12 @@ function setup_zsh_extras
     fi
 }
 
-# Manual installs (not automated):
-#   ghostty      — auto-installs on Ubuntu 24.04+; on older releases use Kitty (~/.config/kitty)
-#                  or see https://ghostty.org/docs/install/binary
-#   zen-browser  — download .deb from https://zen-browser.app
-#   jlink        — download installer from https://www.segger.com/downloads/jlink
-#   hyprlock     — requires full Hypr ecosystem; see https://hyprland.org
-#   wdisplays    — optional Wayland display GUI; build from https://github.com/cyclopsian/wdisplays
+function setup_flatpak
+{
+    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    flatpak install flathub app.zen_browser.zen
+}
+
 
 install_apt_packages
 install_nodejs
@@ -213,3 +212,4 @@ install_oh_my_zsh
 link_configs
 install_wallpapers
 setup_zsh_extras
+setup_flatpak

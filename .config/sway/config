@@ -31,7 +31,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Tab exec ~/.config/rofi/launchers/type-1/launcher.sh
 bindsym $mod+Shift+r reload
 bindsym $mod+Shift+e exec wlogout -p layer-shell
-bindsym $mod+l exec hyprlock
+bindsym $mod+l exec swaylock 
 
 # Brightness controls
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
@@ -119,15 +119,11 @@ bindsym $mod+Shift+n exec swaync-client -t -sw
 
 # Application bindings
 bindsym $mod+Shift+v exec swaymsg workspace $ws2 && code
-bindsym $mod+Shift+c exec swaymsg workspace $ws3 && zen-browser
+bindsym $mod+Shift+c exec swaymsg workspace $ws3 && flatpak run app.zen_browser.zen
 
 # Workspace Assignments
 assign [class="Code"] workspace $ws2
 assign [app_id="com.mitchellh.ghostty"] workspace $ws1
 assign [app_id="zen"] workspace $ws3
-
-# Auto-clicker toggle
-exec systemctl --user start ydotool
-bindsym $mod+Shift+l exec ~/.local/bin/toggle-click.sh
 
 include /etc/sway/config.d/*

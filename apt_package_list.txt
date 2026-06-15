@@ -32,3 +32,6 @@ wlogout
 wofi
 zip
 zsh
+flatpak
+gnome-software-plugin-flatpak
+swaylock
