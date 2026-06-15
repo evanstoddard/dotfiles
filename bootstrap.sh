@@ -192,6 +192,37 @@ function setup_zsh_extras
     fi
 }
 
+function install_ly
+{
+    if ! which ly &>/dev/null; then
+        # Install Zig (required to build ly)
+        if ! which zig &>/dev/null; then
+            local zig_arch="x86_64-linux"
+            [ "$ARCH" = "aarch64" ] && zig_arch="aarch64-linux"
+            local zig_url
+            zig_url=$(curl -s 'https://ziglang.org/download/index.json' \
+                | python3 -c "import sys,json; d=json.load(sys.stdin); v=next(k for k in d if k!='master'); print(d[v]['${zig_arch}']['tarball'])")
+
+            curl -fsSL "$zig_url" -o /tmp/zig.tar.xz
+            sudo tar -xf /tmp/zig.tar.xz -C /opt
+            sudo mv /opt/zig-* /opt/zig
+            sudo ln -sf /opt/zig/zig /usr/local/bin/zig
+            rm /tmp/zig.tar.xz
+        fi
+
+        # Clone, build, and install ly
+        git clone --recurse-submodules https://github.com/fairyglade/ly /tmp/ly
+        (cd /tmp/ly && sudo /usr/local/bin/zig build installexe)
+        sudo rm -rf /tmp/ly
+    else
+        echo "ly already installed... skipping build..."
+    fi
+
+    # Switch from gdm to ly
+    sudo systemctl disable gdm 2>/dev/null || true
+    sudo systemctl enable ly@tty2
+}
+
 function setup_flatpak
 {
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -209,6 +240,7 @@ install_nerd_fonts
 install_phosphor_icons
 install_nvim
 install_oh_my_zsh
+install_ly
 link_configs
 install_wallpapers
 setup_zsh_extras
