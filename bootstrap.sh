@@ -223,6 +223,21 @@ function install_ly
     sudo systemctl enable ly@tty2
 }
 
+function install_thefuck
+{
+    # The PyPI release uses imp/distutils, both removed in Python 3.12.
+    # Run thefuck under Python 3.11 via deadsnakes to avoid these issues.
+    # python3.11-distutils is required separately on Ubuntu.
+    if ! which python3.11 &>/dev/null; then
+        sudo add-apt-repository ppa:deadsnakes/ppa -y
+        sudo apt-get update
+        sudo apt-get install -y python3.11 python3.11-distutils
+    fi
+
+    pipx install thefuck --python python3.11 --force
+    pipx inject thefuck setuptools
+}
+
 function setup_flatpak
 {
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -240,6 +255,7 @@ install_nerd_fonts
 install_phosphor_icons
 install_nvim
 install_oh_my_zsh
+install_thefuck
 install_ly
 link_configs
 install_wallpapers

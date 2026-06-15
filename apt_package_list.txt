@@ -25,7 +25,6 @@ suckless-tools
 sway
 sway-notification-center
 swaybg
-thefuck
 tmux
 unzip
 waybar
@@ -37,3 +36,4 @@ zsh
 flatpak
 gnome-software-plugin-flatpak
 swaylock
+wl-clipboard
